@@ -1,0 +1,9 @@
+package: .
+import:
+- package: google.golang.org/grpc
+  version: ^1.0.1-GA
+- package: github.com/grpc-ecosystem/grpc-gateway
+  version: ^1.1.0
+  subpackages:
+  - protoc-gen-grpc-gateway
+  - protoc-gen-swagger
