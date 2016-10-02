@@ -1,11 +1,12 @@
 export GOPATH = $(PWD)
-export PATH := $(PATH):$(GOPATH)/bin
+export PATH := $(PATH):$(GOPATH)/bin:/usr/local/go/bin
 
 ifdef RACE
 GOOPT += -race
 endif
 
 ifdef STATIC
+export CGO_ENABLED = 0
 GOOPT += -a -installsuffix cgo
 endif
 
@@ -28,7 +29,7 @@ proto:
 	mkdir -p src/example; find pb \( -name "*.go" -or -name "*.json" \) -exec mv {} src/example \;
 
 main:
-	go build -o bin/example $(GOOPT) src/main.go
+	go build -o bin/example $(GOOPT) src/main/main.go
 
 clean:
 	rm -f pb/*.go pb/*.json
