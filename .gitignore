@@ -1,0 +1,6 @@
+.idea/
+.glide/
+*.pb.go
+*.pb.gw.go
+*.swagger.json
+src/vendor
