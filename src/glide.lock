@@ -1,11 +1,40 @@
 hash: af5f4842a1f6b1162e70fb754459ff6dddc0c3844f59134b5afe3e9b90b76e1e
-updated: 2016-10-02T13:58:14.970043335Z
+updated: 2016-10-02T16:33:30.248852685Z
 imports:
+- name: github.com/golang/protobuf
+  version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
+  subpackages:
+  - proto
+  - jsonpb
+  - protoc-gen-go/descriptor
 - name: github.com/grpc-ecosystem/grpc-gateway
   version: a8f25bd1ab549f8b87afd48aa9181221e9d439bb
   subpackages:
   - protoc-gen-grpc-gateway
   - protoc-gen-swagger
+  - runtime
+  - third_party/googleapis/google/api
+  - utilities
+  - runtime/internal
+- name: golang.org/x/net
+  version: cd95c68ba21fc7ee16ee38cc420473e3d8c4afd8
+  subpackages:
+  - context
+  - http2
+  - trace
+  - http2/hpack
+  - idna
+  - lex/httplex
+  - internal/timeseries
 - name: google.golang.org/grpc
   version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
+  subpackages:
+  - codes
+  - grpclog
+  - metadata
+  - credentials
+  - internal
+  - naming
+  - transport
+  - peer
 testImports: []

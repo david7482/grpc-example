@@ -11,8 +11,6 @@ endif
 
 .PHONY: clean glide proto main
 
-TEST_PACKAGES =
-
 all: glide proto main
 
 glide:
@@ -30,11 +28,9 @@ proto:
 	mkdir -p src/example; find pb \( -name "*.go" -or -name "*.json" \) -exec mv {} src/example \;
 
 main:
+	go build -o bin/example $(GOOPT) src/main.go
 
 clean:
 	rm -f pb/*.go pb/*.json
 	rm -rf bin pkg
 	rm -rf src/vendor src/example
-
-test: common etcdmgr wsmgr
-	go test $(GOOPT) $(TEST_PACKAGES)
