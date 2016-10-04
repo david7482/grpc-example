@@ -4,3 +4,4 @@
 *.pb.gw.go
 *.swagger.json
 src/vendor
+bin/*
