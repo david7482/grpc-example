@@ -10,9 +10,9 @@ export CGO_ENABLED = 0
 GOOPT += -a -installsuffix cgo
 endif
 
-.PHONY: clean glide proto main
+.PHONY: clean glide proto example1
 
-all: glide proto main
+all: glide proto example1
 
 glide:
 	@if [ ! -d $(PWD)/src/vendor ]; then \
@@ -26,10 +26,10 @@ proto:
 	protoc -I/usr/local/include -I. -Isrc -I$$GOOGLE_API_PATH --go_out=Mgoogle/api/annotations.proto=github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/google/api,plugins=grpc:. $$PB_FILES; \
 	protoc -I/usr/local/include -I. -Isrc -I$$GOOGLE_API_PATH --grpc-gateway_out=logtostderr=true:. $$PB_FILES; \
 	protoc -I/usr/local/include -I. -Isrc -I$$GOOGLE_API_PATH --swagger_out=logtostderr=true:. $$PB_FILES;
-	mkdir -p src/example; find pb \( -name "*.go" -or -name "*.json" \) -exec mv {} src/example \;
+	mkdir -p src/pb; find pb \( -name "*.go" -or -name "*.json" \) -exec mv {} src/pb \;
 
-main:
-	go build -o bin/example $(GOOPT) src/main/main.go
+example1:
+	go build -o bin/example1 $(GOOPT) src/example1/main.go
 
 clean:
 	rm -f pb/*.go pb/*.json
