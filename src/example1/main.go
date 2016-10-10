@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net"
 	"net/http"
@@ -13,8 +14,13 @@ import (
 	"google.golang.org/grpc"
 )
 
+var (
+	gRPCPort        = flag.Int("grpc_port", 9000, "port of gRPC service")
+	gRPCGatewayPort = flag.Int("grpc_gateway", 9001, "port of gRPC gateway")
+)
+
 func runGRPC() {
-	l, err := net.Listen("tcp", ":9090")
+	l, err := net.Listen("tcp", fmt.Sprintf(":%d", *gRPCPort))
 	if err != nil {
 		fmt.Errorf("%v", err)
 		return
@@ -29,17 +35,18 @@ func runGRPC() {
 func runGateway() {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	err := pb.RegisterEchoServiceHandlerFromEndpoint(context.TODO(), mux, "localhost:9090", opts)
+	err := pb.RegisterEchoServiceHandlerFromEndpoint(context.TODO(), mux, fmt.Sprintf(":%d", *gRPCPort), opts)
 	if err != nil {
 		fmt.Errorf("%v", err)
 		return
 	}
 
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe(fmt.Sprintf(":%d", *gRPCGatewayPort), mux)
 	return
 }
 
 func main() {
+	flag.Parse()
 
 	go runGRPC()
 
