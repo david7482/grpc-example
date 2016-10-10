@@ -1,5 +1,5 @@
-hash: af5f4842a1f6b1162e70fb754459ff6dddc0c3844f59134b5afe3e9b90b76e1e
-updated: 2016-10-02T16:33:30.248852685Z
+hash: dc3db07d514e560b8bfc064b285f97276972d6c92c6ade9d2df8eaefc7b1101d
+updated: 2016-10-10T14:43:05.219588998Z
 imports:
 - name: github.com/golang/protobuf
   version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
@@ -16,6 +16,8 @@ imports:
   - third_party/googleapis/google/api
   - utilities
   - runtime/internal
+- name: github.com/soheilhy/cmux
+  version: bf4a8ede9e87c006fe1d4278c6c7f2b8be1fa84c
 - name: golang.org/x/net
   version: cd95c68ba21fc7ee16ee38cc420473e3d8c4afd8
   subpackages:
@@ -27,7 +29,7 @@ imports:
   - lex/httplex
   - internal/timeseries
 - name: google.golang.org/grpc
-  version: 0032a855ba5c8a3c8e0d71c2deef354b70af1584
+  version: b1a2821ca5a4fd6b6e48ddfbb7d6d7584d839d21
   subpackages:
   - codes
   - grpclog

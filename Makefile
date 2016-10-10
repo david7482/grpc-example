@@ -10,9 +10,9 @@ export CGO_ENABLED = 0
 GOOPT += -a -installsuffix cgo
 endif
 
-.PHONY: clean glide proto example1
+.PHONY: clean glide proto example1 example2
 
-all: glide proto example1
+all: glide proto example1 example2
 
 glide:
 	@if [ ! -d $(PWD)/src/vendor ]; then \
@@ -30,6 +30,9 @@ proto:
 
 example1:
 	go build -o bin/example1 $(GOOPT) src/example1/main.go
+
+example2:
+	go build -o bin/example2 $(GOOPT) src/example2/main.go
 
 clean:
 	rm -f pb/*.go pb/*.json

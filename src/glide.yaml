@@ -7,3 +7,5 @@ import:
   subpackages:
   - protoc-gen-grpc-gateway
   - protoc-gen-swagger
+- package: github.com/soheilhy/cmux
+  version: ^0.1.2
