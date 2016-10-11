@@ -28,6 +28,7 @@ func runGRPC() {
 
 	s := grpc.NewServer()
 	pb.RegisterEchoServiceServer(s, &services.EchoService{})
+	pb.RegisterCalculateServiceServer(s, &services.CalculateService{})
 
 	s.Serve(l)
 }
@@ -36,6 +37,7 @@ func runGateway() {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 	err := pb.RegisterEchoServiceHandlerFromEndpoint(context.TODO(), mux, fmt.Sprintf(":%d", *gRPCPort), opts)
+	err = pb.RegisterCalculateServiceHandlerFromEndpoint(context.TODO(), mux, fmt.Sprintf(":%d", *gRPCPort), opts)
 	if err != nil {
 		fmt.Errorf("%v", err)
 		return

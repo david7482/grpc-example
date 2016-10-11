@@ -1,0 +1,30 @@
+syntax = "proto3";
+package pb;
+
+import "google/api/annotations.proto";
+
+message CalculateRequest {
+    enum op {
+        ADD = 0;
+        SUB = 1;
+        MUL = 2;
+        DIV = 3;
+    }
+
+    int32 value0 = 1;
+    int32 value1 = 2;
+    op operator = 3;
+}
+
+message CalculateResponse {
+    int32 value = 1;
+}
+
+service CalculateService {
+    rpc Calculate(CalculateRequest) returns (CalculateResponse) {
+        option (google.api.http) = {
+            post: "/v1/calc"
+            body: "*"
+        };
+    }
+}
