@@ -40,4 +40,4 @@ example2:
 clean:
 	rm -f pb/*.go pb/*.json
 	rm -rf bin pkg
-	rm -rf src/vendor src/example
+	rm -rf src/vendor src/example src/pb src/.glide
