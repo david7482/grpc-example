@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 
 	"pb"
 
@@ -13,6 +14,7 @@ import (
 var (
 	port = flag.Int("p", 9000, "port of gRPC service")
 	echo = flag.String("e", "", "message for echo service")
+	stream_echo = flag.String("s", "", "message for stream echo service")
 	v0 = flag.Int("v0", 0, "1st number for calculate service")
 	v1 = flag.Int("v1", 0, "2nd number for calculate service")
 	op = flag.String("op", "", "operator for calculate service")
@@ -36,6 +38,24 @@ func main() {
 			panic(err)
 		}
 		fmt.Printf("%+v\n", r)
+	} else if len(*stream_echo) != 0 {
+		client := pb.NewEchoServiceClient(conn)
+		stream, err := client.StreamEcho(context.TODO(), &pb.EchoMessage{
+			Value: *stream_echo,
+		})
+		if err != nil {
+			panic(err)
+		}
+		for {
+			msg, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				panic(err)
+			}
+			fmt.Printf("%+v\n", msg)
+		}
 	} else {
 		var opr pb.CalculateRequestOp
 		switch *op {
