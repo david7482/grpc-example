@@ -1,5 +1,5 @@
 hash: dc3db07d514e560b8bfc064b285f97276972d6c92c6ade9d2df8eaefc7b1101d
-updated: 2016-10-10T14:43:05.219588998Z
+updated: 2016-11-29T05:02:11.267228117Z
 imports:
 - name: github.com/golang/protobuf
   version: df1d3ca07d2d07bba352d5b73c4313b4e2a6203e
@@ -29,13 +29,13 @@ imports:
   - lex/httplex
   - internal/timeseries
 - name: google.golang.org/grpc
-  version: b1a2821ca5a4fd6b6e48ddfbb7d6d7584d839d21
+  version: 777daa17ff9b5daef1cfdf915088a2ada3332bf0
   subpackages:
   - codes
   - grpclog
-  - metadata
   - credentials
   - internal
+  - metadata
   - naming
   - transport
   - peer
